@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
-import { deleteComputer } from '../services/computer-service'
+import { deleteComputer, updateComputer } from '../services/computer-service'
+import EditForm from './EditForm'
 
 const ActionButtons = ({ item }) => {
 
-    const [isActive, setIsActive] = useState(item.isActive)
+    const [ isActive, setIsActive ] = useState( item.isActive )
+    const [ isOpen, setIsOpen ] = useState( false )
 
-    const handleToggle = () => {
-        setIsActive(!isActive)
+    const handleToggle = async() => {
+        const newStatus = !isActive
+        setIsActive( newStatus )
+        
+        const updateStatus   = {
+            ...item,
+            isActive: newStatus,
+        } 
+        
+        await updateComputer( item.id, updateStatus )
     }
 
     const handleDelete = () => {
         deleteComputer( item.id )
-    }
-
-    const handleUpdate = () => {
-        alert(`${item.id} has been updated`)
     }
 
     return (
@@ -42,7 +48,7 @@ const ActionButtons = ({ item }) => {
 
             <button
                 className="text-blue-500 hover:text-blue-700"
-                onClick={handleUpdate}
+                onClick={() => setIsOpen(true)}
                 >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +66,10 @@ const ActionButtons = ({ item }) => {
                 </svg>
             </button>
 
+                { isOpen && (
+                    <EditForm item={ item } setIsOpen={setIsOpen}/>
+                )}
+                
             <button
                 className="text-gray-500 hover:text-gray-700"
                 onClick={handleToggle}

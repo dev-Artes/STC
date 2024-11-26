@@ -1,7 +1,9 @@
 import React from 'react'
+
+// Components
 import ActionButtons from './ActionButtons'
 
-const Table = ({ data = [] }) => {
+const Table = ({ data = [], onEditClick }) => {
 
   return (
     <div className="overflow-x-auto">
@@ -30,7 +32,8 @@ const Table = ({ data = [] }) => {
               <td className="px-4 py-2">fecha</td>
               <td className="px-4 py-2">
                 <ActionButtons 
-                  item = { item } 
+                  item = { item }
+                  onEditClick =  { onEditClick }
                 />
               </td>
             </tr>
