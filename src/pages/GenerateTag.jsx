@@ -1,6 +1,7 @@
 import React from 'react'
-import Layout from '../components/Layout'
-import ComputerForm from '../components/ComputerForm'
+
+// Components
+import { Layout, ComputerForm } from '../components'
 
 const GenerateTag = () => {
     return (

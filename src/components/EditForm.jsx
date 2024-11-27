@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // Services
-import { updateComputer } from "../services/computer-service";
+import { updateComputer } from "../services";
 
 const EditForm = ({ setIsOpen, item, onUpdate }) => {
   const [ inputTag, setInputTag] = useState(item.tag)

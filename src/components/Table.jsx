@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Components
-import ActionButtons from './ActionButtons'
+import { ActionButtons } from './'
 
 const Table = ({ data = [], onEditClick }) => {
 

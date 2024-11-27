@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import Input from './Input'
+
+// Components
+import { Input } from './'
 
 const UserForm = () => {
     const [user, setUser] = useState({

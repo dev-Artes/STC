@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 // Components
-import Table from '../components/Table'
-import Layout from '../components/Layout'
-import EditForm from '../components/EditForm'
+import { Table, Layout, EditForm } from '../components'
 
 // Services
-import { getComputers } from '../services/computer-service'
+import { getComputers } from '../services'
 
 const Home = () => {
 

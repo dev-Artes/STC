@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
-import { deleteComputer, updateComputer } from '../services/computer-service'
-import EditForm from './EditForm'
+
+// Components
+import { EditForm } from './'
+
+// Services
+import { deleteComputer, updateComputer } from '../services'
 
 const ActionButtons = ({ item }) => {
 

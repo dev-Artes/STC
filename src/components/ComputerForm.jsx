@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 // Services
-import { addComputer, getComputers } from '../services/computer-service'
-import { getUsers } from '../services/user-service'
+import { addComputer, getComputers, getUsers } from '../services'
 
 const ComputerForm = () => {
   const [users, setUsers] = useState([])
