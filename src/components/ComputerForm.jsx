@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { addComputer } from '../services/computer-service'
+import React, { useState, useEffect } from 'react'
+
+// Services
+import { addComputer, getComputers } from '../services/computer-service'
 import { getUsers } from '../services/user-service'
 
 const ComputerForm = () => {
@@ -15,20 +17,30 @@ const ComputerForm = () => {
     fetchUsers()
   }, [])
 
-  const handleSubmit = (e) => {
+  const checkTagExists = async ( tag ) => {
+    const computers = await getComputers()
+    return computers.some( computer => computer.tag === tag )
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
     if (selectedUser && tagComputer) {
-      const computerData = {
-        tag: tagComputer,
-        isActive: true,
-        created_by: selectedUser,
-        created_at: new Date(),
+      const tagExists = await checkTagExists( tagComputer )
+
+      if ( tagExists ) {
+        throw new Error('tag name already exists')
+      } else { 
+        const computerData = {
+          tag: tagComputer,
+          isActive: true,
+          created_by: selectedUser,
+          created_at: new Date(),
+        }
+        await addComputer(computerData)
       }
-  
-      addComputer(computerData)
     } else {
-      console.log('Form not valid: missing user or computer tag');
+      throw new Error('Form not valid: missing user or computer tag');
     }
   }
   
@@ -36,7 +48,7 @@ const ComputerForm = () => {
   return (
     <form onSubmit = { handleSubmit }>
       <div className='mb-2'>
-        <label htmlFor = "tag_computer">Etiqueta del computador:</label>
+        <label htmlFor = "tag_computer">Etiqueta del equipo:</label>
         <input
           className="border rounded p-2 w-full mb-4"
           type = "text"
@@ -59,7 +71,7 @@ const ComputerForm = () => {
           }}
           required
         >
-          <option value="">Seleccionar usuario</option>
+          <option value="">Ti responsable</option>
           {users.map((user) => (
             <option key={user.id} value={user.id}>
               {user.name}
@@ -69,9 +81,9 @@ const ComputerForm = () => {
       </div>
       <button 
         type="submit"
-        className='w-full p-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md docus:ring-blue-500 focus:border-blue-500'
+        className='w-full p-2 bg-green-500 hover:bg-green-700 text-white rounded-md docus:ring-blue-500 focus:border-green-500'
         >
-          Agregar Computador
+          Agregar etiqueta
         </button>
     </form>
   )

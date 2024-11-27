@@ -9,18 +9,16 @@ import {
 
 import { db } from "../firebase/firebase-config"
 
-    const addComputer = async ( computer ) => {
-        console.log('comp', computer)
-        try {
-          const docRef = await addDoc(collection(db, "pc_tag"), computer)
-          console.log('Document written with ID: ', docRef.id)
-          alert('Document with Id: ' + docRef.id + ' has been created')
-        } catch (error) {
-          console.error('Error adding document: ', error)
-          alert('Error adding document')
-        }
-      }
-      
+const addComputer = async ( computer ) => {
+    try {
+        const docRef = await addDoc(collection(db, "pc_tag"), computer)
+        
+        if ( docRef )
+        alert('Document with Id: ' + docRef.id + ' has been created')
+    } catch ( error ) {
+        throw new Error('Error adding document: ', error)
+    }
+}
 
 const getComputerById = async ( computerId ) => {
     try {
@@ -28,7 +26,7 @@ const getComputerById = async ( computerId ) => {
         const computer = await getDocs( computerDoc )
         if ( computer.exist() ) return computer.data()
     } catch ( error ) {
-        console.error('Computer not Found: ', error)
+        throw new Error('Computer not Found: ', error)
     }
 }
 
@@ -44,7 +42,6 @@ const getComputers = async () => {
 
     } catch ( error ) {
         throw new Error("Computers not found: ", error )
-        
     }
 }
 
@@ -53,22 +50,18 @@ const updateComputer = async ( computerId, updatedComputer ) => {
         const computer = doc(db, "pc_tag", computerId)
         await updateDoc(computer, updatedComputer)
 
-        alert('Computer with Id: ' + computerId + ' has been updated')
+        // alert('Computer with Id: ' + computerId + ' has been updated')
     } catch ( error ) {
-        console.error("Error updating computer: ", error)
         alert('Error updating computer: ' + error.message)
     }
 }
 
 const deleteComputer = async ( computerId ) => {
     try {
-        console.log('Id', computerId)
-        
         const computer = doc(db, "pc_tag", computerId)
         await deleteDoc(computer )
     } catch ( error)  {
         throw new Error("Error to delete computer", error)
-
     }
 }
 

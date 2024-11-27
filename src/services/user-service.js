@@ -11,9 +11,8 @@ import { db } from '../firebase/firebase-config'
 
 const addUser = async ( user ) => {
   try {
-  
     const docRef = await addDoc(collection(db, "users"), user)
-    alert('Document with Id: ', docRef.id, 'has been created')  
+    alert('Document with Id: ', docRef.id, 'has been created')
   } catch ( e ) {
     console.error("Error to create user: ", e)
   }
@@ -52,7 +51,7 @@ const updateUser = async ( userId, updatedUser ) => {
     const userDocRef = doc(db, "users", userId)
     await updateDoc(userDocRef, updatedUser)
   
-    console.log("User with Id has been updated:", userId)
+    // console.log("User with Id has been updated:", userId)
   
   } catch ( e ) {
     console.error("Error to update user: ", e)
@@ -64,7 +63,7 @@ const deleteUser = async ( userId ) => {
     const userDocRef = doc(db, "users", userId)
     await deleteDoc(userDocRef)
     
-    console.log("Usuario eliminado con ID:", userId)
+    // console.log("Usuario eliminado con ID:", userId)
   
   } catch ( e ) {
     console.error("Error to delete user: ", e)

@@ -12,7 +12,7 @@ const Table = ({ data = [], onEditClick }) => {
           <tr>
             <th className="px-4 py-2"></th>
             <th className="px-4 py-2">Etiqueta</th>
-            <th className="px-4 py-2">Ti</th>
+            <th className="px-4 py-2">Ti responsable</th>
             <th className="px-4 py-2">Fecha</th>
             <th className="px-4 py-2">Acciones</th>
           </tr>
