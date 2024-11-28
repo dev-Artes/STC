@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 
 // Components
-import { EditForm } from './'
+import { EditForm, ModalDialog } from './'
 
 // Services
-import { deleteComputer, updateComputer } from '../services'
+import { updateComputer, deleteComputer } from '../services'
 
 const ActionButtons = ({ item }) => {
 
-    const [ isActive, setIsActive ] = useState( item.isActive )
     const [ isOpen, setIsOpen ] = useState( false )
+    const [ isModalOpen, setIsModalOpen ] = useState( false )
+    const [ itemToDelete, setItemToDelete ] = useState( null )
+    const [ isActive, setIsActive ] = useState( item.isActive )
 
     const handleToggle = async() => {
         const newStatus = !isActive
@@ -23,15 +25,27 @@ const ActionButtons = ({ item }) => {
         await updateComputer( item.id, updateStatus )
     }
 
-    const handleDelete = () => {
-        deleteComputer( item.id )
+    const handleDelete = ( id ) => {
+        setItemToDelete( id )
+        setIsModalOpen( true )
     }
+
+    const confirmDelete = () => {
+        if ( itemToDelete !== null ) deleteComputer( item.id )
+
+    }
+
+    const closeModal = () => {
+        setItemToDelete( null )
+        setIsModalOpen( false )
+    }
+
 
     return (
         <>
             <button
                 className="text-red-500 hover:text-red-700"
-                onClick={handleDelete}
+                onClick={ () => handleDelete( item.id )}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +63,14 @@ const ActionButtons = ({ item }) => {
                     />
                 </svg>
             </button>
+
+            { isModalOpen && (
+                <ModalDialog 
+                    modalContent={`¿Desea Eliminar la etiqueta "${item.tag}" del registro?`}
+                    handleConfirmDelete={ confirmDelete }
+                    handleCloseModal={ closeModal }
+                />
+            )}
 
             <button
                 className="text-blue-500 hover:text-blue-700"
@@ -70,9 +92,9 @@ const ActionButtons = ({ item }) => {
                 </svg>
             </button>
 
-                { isOpen && (
-                    <EditForm item={ item } setIsOpen={setIsOpen}/>
-                )}
+            { isOpen && (
+                <EditForm item={ item } setIsOpen={setIsOpen}/>
+            )}
                 
             <button
                 className="text-gray-500 hover:text-gray-700"

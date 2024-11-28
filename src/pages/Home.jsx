@@ -5,6 +5,7 @@ import { Table, Layout, EditForm } from '../components'
 
 // Services
 import { getComputers } from '../services'
+import { CircularProgress } from '@mui/material'
 
 const Home = () => {
 
@@ -13,7 +14,6 @@ const Home = () => {
     const [ computers, setComputers ] = useState([])
     const [ isModalOpen, setIsModalOpen ] = useState(false)
     const [ selectedItem, setSelectedItem ] = useState(null)
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -47,7 +47,8 @@ const Home = () => {
         )
     }
 
-    if ( loading ) return <div>Loading...</div>
+
+    if ( loading ) return <div className="fixed inset-0 flex items-center justify-center z-50" > <CircularProgress /> </div>
 
     if ( error ) return <div>{error}</div>
 

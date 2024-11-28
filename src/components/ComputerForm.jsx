@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
+import { Timestamp } from 'firebase/firestore'
+
 // Services
 import { addComputer, getComputers, getUsers } from '../services'
 
@@ -30,11 +32,13 @@ const ComputerForm = () => {
       if ( tagExists ) {
         throw new Error('tag name already exists')
       } else { 
+        const date_added = Timestamp.fromDate(new Date())
+        
         const computerData = {
           tag: tagComputer,
           isActive: true,
           created_by: selectedUser,
-          created_at: new Date(),
+          created_at: date_added,
         }
         await addComputer(computerData)
       }

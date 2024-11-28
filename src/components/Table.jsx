@@ -5,6 +5,16 @@ import { ActionButtons } from './'
 
 const Table = ({ data = [], onEditClick }) => {
 
+  const convertTimestamp = ( timestamp ) => {
+    let date = timestamp.toDate()
+    let dd = date.getDate()
+    let mm = date.getMonth() + 1
+    let yyyy = date.getFullYear()
+    date = dd + '/' + mm + '/' + yyyy
+
+    return date;
+  }
+
   return (
     <div className="overflow-x-auto">
       <table className="table-auto w-full">
@@ -29,7 +39,7 @@ const Table = ({ data = [], onEditClick }) => {
               </td>
               <td className="px-4 py-2">{item.tag}</td>
               <td className="px-4 py-2">{item.created_by.name}</td>
-              <td className="px-4 py-2">fecha</td>
+              <td className="px-4 py-2">{convertTimestamp(item.created_at)}</td>
               <td className="px-4 py-2">
                 <ActionButtons 
                   item = { item }
