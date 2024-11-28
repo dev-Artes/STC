@@ -4,12 +4,12 @@ import React, { useState } from 'react'
 import { Input } from './'
 
 const UserForm = () => {
-    const [user, setUser] = useState({
+    const [ user, setUser ] = useState({
         name: '',
         email: '',
     })
 
-    const handleInputChange = (e) => {
+    const handleInputChange = ( e ) => {
         const { name, value } = e.target
         setUser({
             ...user,
@@ -17,7 +17,7 @@ const UserForm = () => {
         })
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async ( e ) => {
         e.preventDefault()
         await addUser(user)
     }

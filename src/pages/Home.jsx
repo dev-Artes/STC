@@ -9,11 +9,11 @@ import { CircularProgress } from '@mui/material'
 
 const Home = () => {
 
-    const [ error, setError ] = useState(null)
-    const [ loading, setLoading ] = useState(true)
-    const [ computers, setComputers ] = useState([])
-    const [ isModalOpen, setIsModalOpen ] = useState(false)
-    const [ selectedItem, setSelectedItem ] = useState(null)
+    const [ error, setError ] = useState( null )
+    const [ loading, setLoading ] = useState( true )
+    const [ computers, setComputers ] = useState( [] )
+    const [ isModalOpen, setIsModalOpen ] = useState( false )
+    const [ selectedItem, setSelectedItem ] = useState( null )
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,16 +27,16 @@ const Home = () => {
             }
         }
         fetchData()
-    }, [computers] )
+    }, [] )
 
     const handleEditClick = ( item ) => {
         setSelectedItem( item )
-        setIsModalOpen(true)
+        setIsModalOpen( true )
     }
 
     const handleCloseModal = () => {
-        setIsModalOpen(false)
-        setSelectedItem(null)
+        setIsModalOpen( false )
+        setSelectedItem( null )
     }
 
     const handleUpdate = ( updatedComputer ) => {
@@ -46,7 +46,6 @@ const Home = () => {
             )
         )
     }
-
 
     if ( loading ) return <div className="fixed inset-0 flex items-center justify-center z-50" > <CircularProgress /> </div>
 

@@ -6,9 +6,9 @@ import { Timestamp } from 'firebase/firestore'
 import { addComputer, getComputers, getUsers } from '../services'
 
 const ComputerForm = () => {
-  const [users, setUsers] = useState([])
-  const [selectedUser, setSelectedUser] = useState(null)
-  const [tagComputer, setTagComputer] = useState('')
+  const [ users, setUsers ] = useState( [] )
+  const [ selectedUser, setSelectedUser ] = useState( null )
+  const [ tagComputer, setTagComputer ] = useState( '' )
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -26,7 +26,7 @@ const ComputerForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    if (selectedUser && tagComputer) {
+    if ( selectedUser && tagComputer ) {
       const tagExists = await checkTagExists( tagComputer )
 
       if ( tagExists ) {
@@ -40,7 +40,7 @@ const ComputerForm = () => {
           created_by: selectedUser,
           created_at: date_added,
         }
-        await addComputer(computerData)
+        await addComputer( computerData )
       }
     } else {
       throw new Error('Form not valid: missing user or computer tag');

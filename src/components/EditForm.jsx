@@ -4,10 +4,10 @@ import React, { useState } from 'react'
 import { updateComputer } from "../services";
 
 const EditForm = ({ setIsOpen, item, onUpdate }) => {
-  const [ inputTag, setInputTag] = useState(item.tag)
+  const [ inputTag, setInputTag ] = useState( item.tag )
 
   const handleInputChange = ( e ) => {
-    setInputTag(e.target.value)
+    setInputTag( e.target.value )
   }
 
   const handleFormSubmit = async ( e ) => {
@@ -18,8 +18,8 @@ const EditForm = ({ setIsOpen, item, onUpdate }) => {
       tag: inputTag,
     }
     await updateComputer( item.id, updatedComputerData )
-    onUpdate(updatedComputerData)
-    setIsOpen(false)
+    onUpdate( updatedComputerData )
+    setIsOpen( false )
   }
 
   return (
@@ -27,7 +27,7 @@ const EditForm = ({ setIsOpen, item, onUpdate }) => {
       className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
-          setIsOpen(false)
+          setIsOpen( false )
         }
       }}
       >
@@ -90,7 +90,7 @@ const EditForm = ({ setIsOpen, item, onUpdate }) => {
                   Actualizar
               </button>
             </div>
-            </form>
+          </form>
         </div>
     </div>
   )

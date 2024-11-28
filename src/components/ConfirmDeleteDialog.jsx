@@ -1,8 +1,5 @@
-import React from 'react'
-
 // Components
-import { Button } from '.'
-// import { deleteComputer } from '../services'
+import { Button } from './'
 
 const ModalDialog = ({ modalContent, handleCloseModal, handleConfirmDelete }) => {
     return (

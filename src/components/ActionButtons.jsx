@@ -7,13 +7,12 @@ import { EditForm, ModalDialog } from './'
 import { updateComputer, deleteComputer } from '../services'
 
 const ActionButtons = ({ item }) => {
-
     const [ isOpen, setIsOpen ] = useState( false )
     const [ isModalOpen, setIsModalOpen ] = useState( false )
     const [ itemToDelete, setItemToDelete ] = useState( null )
     const [ isActive, setIsActive ] = useState( item.isActive )
 
-    const handleToggle = async() => {
+    const handleToggle = async () => {
         const newStatus = !isActive
         setIsActive( newStatus )
         
