@@ -27,7 +27,7 @@ const Home = () => {
             }
         }
         fetchData()
-    }, [] )
+    }, [computers] )
 
     const handleEditClick = ( item ) => {
         setSelectedItem( item )
@@ -62,7 +62,6 @@ const Home = () => {
                         <EditForm
                             item = { selectedItem }
                             setIsOpen = { handleCloseModal }
-                            onUpdate = { handleUpdate }
                         />
                     )}
                 </div>

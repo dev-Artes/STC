@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 // Services
 import { updateComputer } from "../services";
 
-const EditForm = ({ setIsOpen, item, onUpdate }) => {
+const EditForm = ({ setIsOpen, item }) => {
   const [ inputTag, setInputTag ] = useState( item.tag )
 
   const handleInputChange = ( e ) => {
@@ -18,7 +18,6 @@ const EditForm = ({ setIsOpen, item, onUpdate }) => {
       tag: inputTag,
     }
     await updateComputer( item.id, updatedComputerData )
-    onUpdate( updatedComputerData )
     setIsOpen( false )
   }
 
