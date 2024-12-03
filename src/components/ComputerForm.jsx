@@ -3,7 +3,10 @@ import React, { useState, useEffect } from 'react'
 import { Timestamp } from 'firebase/firestore'
 
 // Services
-import { addComputer, getComputers, getUsers } from '../services'
+import { addComputer, getUsers } from '../services'
+
+// Utils
+import { checkTagExists } from '../utils/checkTag'
 
 const ComputerForm = () => {
   const [ users, setUsers ] = useState( [] )
@@ -18,10 +21,7 @@ const ComputerForm = () => {
     fetchUsers()
   }, [])
 
-  const checkTagExists = async ( tag ) => {
-    const computers = await getComputers()
-    return computers.some( computer => computer.tag === tag )
-  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()

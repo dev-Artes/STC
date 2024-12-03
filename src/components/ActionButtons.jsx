@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // Components
-import { EditForm, ModalDialog } from './'
+import { EditForm, Modal } from './'
 
 // Services
 import { updateComputer, deleteComputer } from '../services'
@@ -64,10 +64,11 @@ const ActionButtons = ({ item }) => {
             </button>
 
             { isModalOpen && (
-                <ModalDialog 
-                    modalContent={`¿Desea Eliminar la etiqueta "${item.tag}" del registro?`}
-                    handleConfirmDelete={ confirmDelete }
-                    handleCloseModal={ closeModal }
+                <Modal 
+                    type = 'confirm'
+                    message = {`¿Desea Eliminar la etiqueta "${item.tag}" del registro?`}
+                    handleConfirmDelete = { confirmDelete }
+                    handleCloseModal = { closeModal }
                 />
             )}
 

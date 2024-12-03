@@ -1,10 +1,20 @@
 import React, { useState } from 'react'
 
 // Services
-import { updateComputer } from "../services";
+import { updateComputer } from "../services"
+
+// Components
+import Modal from './Modal'
+import Button from './Button'
+
+// Utils
+import { checkTagExists } from '../utils/checkTag'
+
 
 const EditForm = ({ setIsOpen, item }) => {
+  const [ modalMessage, setModalMessage ] = useState('')
   const [ inputTag, setInputTag ] = useState( item.tag )
+  const [ isModalOpen, setIsModalOpen ] = useState( false )
 
   const handleInputChange = ( e ) => {
     setInputTag( e.target.value )
@@ -13,12 +23,24 @@ const EditForm = ({ setIsOpen, item }) => {
   const handleFormSubmit = async ( e ) => {
     e.preventDefault()
 
-    const updatedComputerData   = {
-      ...item,
-      tag: inputTag,
+    if ( inputTag ) {
+      const tagExists = await checkTagExists( inputTag )
+      
+      if ( tagExists ) {
+        setModalMessage(`Ya existe un registro con el nombre de '${inputTag}'`)
+        setIsModalOpen(true)
+        return
+      } else {
+        const updatedComputerData   = {
+          ...item,
+          tag: inputTag,
+        }
+        await updateComputer( item.id, updatedComputerData )
+        setIsOpen( false )
+      }
+    } else {
+      throw new Error("Form not valid: missing computer tag")
     }
-    await updateComputer( item.id, updatedComputerData )
-    setIsOpen( false )
   }
 
   return (
@@ -30,6 +52,7 @@ const EditForm = ({ setIsOpen, item }) => {
         }
       }}
       >
+        {isModalOpen && <Modal message={modalMessage} type="info" handleCloseModal={() => setIsModalOpen(false)} />}
         <div
           className="bg-white rounded-lg shadow-lg p-4 w-1/2"
           onClick={(e) => e.stopPropagation()}
@@ -48,6 +71,7 @@ const EditForm = ({ setIsOpen, item }) => {
                 id="inputTag"
                 name="name"
                 type="text"
+                required
                 value={ inputTag }
                 placeholder={ item.tag }
                 onChange={handleInputChange}
@@ -74,20 +98,22 @@ const EditForm = ({ setIsOpen, item }) => {
             </div>
               
             <div className="flex justify-between">
-              <button
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                type="button"
+              <Button 
+                color='gray-200'
+                hoverColor='gray-400'
+                textColor='gray'
+                content='Cancelar'
+                type='button'
                 onClick={() => setIsOpen(false)}
-                >
-                  Cancelar
-              </button>
-                
-              <button
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                type="submit"
-                >
-                  Actualizar
-              </button>
+              />
+
+              <Button
+                color='green-500'
+                hoverColor='green-700'
+                textColor='white'
+                content='Actualizar'
+                type='submit'
+              />
             </div>
           </form>
         </div>

@@ -39,13 +39,6 @@ const Home = () => {
         setSelectedItem( null )
     }
 
-    const handleUpdate = ( updatedComputer ) => {
-        setComputers( ( prevComputers ) =>
-            prevComputers.map((computer) =>
-                computer.id === updatedComputer.id ? { ...item, ...updatedItem } : computer
-            )
-        )
-    }
 
     if ( loading ) return <div className="fixed inset-0 flex items-center justify-center z-50" > <CircularProgress /> </div>
 

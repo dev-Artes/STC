@@ -3,18 +3,10 @@ import React from 'react'
 // Components
 import { ActionButtons } from './'
 
+// Utils
+import { convertTimestamp } from '../utils/convertTimestamp'
+
 const Table = ({ data = [], onEditClick }) => {
-
-  const convertTimestamp = ( timestamp ) => {
-    let date = timestamp.toDate()
-    let dd = date.getDate()
-    let mm = date.getMonth() + 1
-    let yyyy = date.getFullYear()
-    date = dd + '/' + mm + '/' + yyyy
-
-    return date;
-  }
-
   return (
     <div className="overflow-x-auto">
       <table className="table-auto w-full">
