@@ -1,7 +1,7 @@
 
 // Components
 import { Layout } from '../components'
-import { ReportsTable, ReportsForm } from '../components/reports'
+import { ReportsTable } from '../components/reports'
 import { CircularProgress } from '@mui/material'
 
 // Hooks
