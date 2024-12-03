@@ -1,3 +1,5 @@
 export { default as Home } from './Home'
 export { default as Login} from './Login'
 export { default as GenerateTag} from './GenerateTag'
+export { default as ReportsView } from './ReportsView'
+export { default as GenerateReport } from './GenerateReport'

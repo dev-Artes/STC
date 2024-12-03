@@ -5,14 +5,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import AuthProvider from './auth/AuthProvider';
 
 // Components
-import { Home, GenerateTag } from './pages';
+import { Home, GenerateTag, ReportsView, GenerateReport } from './pages';
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={ <Home /> } />
-        <Route path="/ingresar-etiqueta" element={ <GenerateTag /> } />
+        <Route path="/nueva-etiqueta" element={ <GenerateTag /> } />
+        <Route path="/informes-de-baja" element={ <ReportsView /> } />
+        <Route path="/nuevo-informe" element={ <GenerateReport /> } />
       </Routes>
     </Router>
   

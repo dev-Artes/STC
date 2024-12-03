@@ -20,9 +20,25 @@ const Navbar = () => {
             <li>
               <Link
                 className="hover:underline"
-                to="/ingresar-etiqueta"
+                to="/nueva-etiqueta"
               >
                 Nueva etiqueta
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:underline"
+                to="/informes-de-baja"
+              >
+                Informes de baja
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="hover:underline"
+                to="/nuevo-informe"
+              >
+                Generar Informe
               </Link>
             </li>
           </ul>
