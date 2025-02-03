@@ -83,7 +83,7 @@ const EditForm = ({ setIsOpen, item }) => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="email"
                 >
-                  Ti 
+                  Asignado a
               </label>
                     
               <input
@@ -91,7 +91,7 @@ const EditForm = ({ setIsOpen, item }) => {
                 id="created_by"
                 name="created_by"
                 type="created_by"
-                value={ item.created_by.name }
+                value={ item.assignedTo }
                 readOnly
                 disabled
               />

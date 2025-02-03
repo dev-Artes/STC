@@ -11,7 +11,7 @@ const Modal = ({ type, message, handleCloseModal, handleConfirmDelete }) => {
                     <h2 className='text-lg font-bold mb-4'>
                         { message }
                     </h2>
-                    <div className="flex justify-between bg-">
+                    <div className="flex justify-between">
                         <Button
                             color='gray-200'
                             hoverColor='gray-400'
@@ -21,8 +21,8 @@ const Modal = ({ type, message, handleCloseModal, handleConfirmDelete }) => {
                             onClick={ handleCloseModal }
                         />
                         <Button 
-                            color='red-600'
-                            hoverColor='red-800'
+                            color='red-500'
+                            hoverColor='red-700'
                             content='Eliminar'
                             textColor='white'
                             type='submit'

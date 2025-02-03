@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Components
-import { ActionButtons } from './'
+// import { ActionButtons } from './'
 
 // Utils
 import { convertTimestamp } from '../utils/convertTimestamp'
@@ -14,9 +14,9 @@ const Table = ({ data = [], onEditClick }) => {
           <tr>
             <th className="px-4 py-2"></th>
             <th className="px-4 py-2">Etiqueta</th>
-            <th className="px-4 py-2">Ti responsable</th>
+            <th className="px-4 py-2">Asignado a</th>
             <th className="px-4 py-2">Fecha</th>
-            <th className="px-4 py-2">Acciones</th>
+            {/* <th className="px-4 py-2">Acciones</th> */}
           </tr>
         </thead>
         <tbody>
@@ -30,14 +30,14 @@ const Table = ({ data = [], onEditClick }) => {
                 />
               </td>
               <td className="px-4 py-2">{item.tag}</td>
-              <td className="px-4 py-2">{item.created_by.name}</td>
+              <td className="px-4 py-2">{item.assignedTo}</td>
               <td className="px-4 py-2">{convertTimestamp(item.created_at)}</td>
-              <td className="px-4 py-2">
+              {/* <td className="px-4 py-2">
                 <ActionButtons 
                   item = { item }
                   onEditClick =  { onEditClick }
                 />
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>

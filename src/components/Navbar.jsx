@@ -30,7 +30,7 @@ const Navbar = () => {
                 className="hover:underline"
                 to="/informes-de-baja"
               >
-                Informes de baja
+                Actas
               </Link>
             </li>
             <li>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 className="hover:underline"
                 to="/nuevo-informe"
               >
-                Generar Informe
+                Generar Acta
               </Link>
             </li>
           </ul>

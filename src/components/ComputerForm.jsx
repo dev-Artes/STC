@@ -1,32 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import { Timestamp } from 'firebase/firestore'
 
 // Services
-import { addComputer, getUsers } from '../services'
+import { addComputer } from '../services'
 
 // Utils
 import { checkTagExists } from '../utils/checkTag'
 
 const ComputerForm = () => {
-  const [ users, setUsers ] = useState( [] )
-  const [ selectedUser, setSelectedUser ] = useState( null )
   const [ tagComputer, setTagComputer ] = useState( '' )
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const usersFromDB = await getUsers()
-      setUsers(usersFromDB)
-    }
-    fetchUsers()
-  }, [])
-
+  const [ assignedTo, setAssignedTo ] = useState( '' )
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    if ( selectedUser && tagComputer ) {
+    if ( assignedTo && tagComputer ) {
       const tagExists = await checkTagExists( tagComputer )
 
       if ( tagExists ) {
@@ -37,7 +27,7 @@ const ComputerForm = () => {
         const computerData = {
           tag: tagComputer,
           isActive: true,
-          created_by: selectedUser,
+          assignedTo: assignedTo,
           created_at: date_added,
         }
         await addComputer( computerData )
@@ -62,25 +52,16 @@ const ComputerForm = () => {
         />
       </div>
 
-      <div className='mb-4'>
-        <label htmlFor="user" className='block text-sm font-medium text-gray-700'></label>
-        <select
-          className="block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-          id="created_by"
-          onChange={(e) => {
-            const userId = e.target.value;
-            const user = users.find((user) => user.id === userId);
-            setSelectedUser(user);
-          }}
+      <div className='mb-2'>
+        <label htmlFor = "asigned_to">Asignado a:</label>
+        <input
+          className="border rounded p-2 w-full mb-4"
+          type = "text"
+          id = "tag"
+          value = {assignedTo}
+          onChange = {(e) => setAssignedTo(e.target.value)}
           required
-        >
-          <option value="">Ti responsable</option>
-          {users.map((user) => (
-            <option key={user.id} value={user.id}>
-              {user.name}
-            </option>
-          ))}
-        </select>
+        />
       </div>
       <button 
         type="submit"
