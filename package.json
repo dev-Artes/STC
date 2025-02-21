@@ -16,7 +16,6 @@
     "@heroicons/react": "^2.2.0",
     "@mui/material": "^6.1.9",
     "better-sqlite3": "^11.5.0",
-    "customsHooks": "https://github.com/MLSanhueza98/customsHooks.git",
     "firebase": "^11.0.2",
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.4",

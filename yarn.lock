@@ -2019,14 +2019,6 @@ csstype@^3.0.2, csstype@^3.1.3:
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.3.tgz"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
 
-"customsHooks@https://github.com/MLSanhueza98/customsHooks.git":
-  version "0.0.0"
-  resolved "git+ssh://git@github.com/MLSanhueza98/customsHooks.git#5b897f1095ee1e82db5a7f77d4cd34b99f3f5f09"
-  dependencies:
-    react "^18.3.1"
-    react-dom "^18.3.1"
-    react-router-dom "6"
-
 data-view-buffer@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/data-view-buffer/-/data-view-buffer-1.0.1.tgz"
